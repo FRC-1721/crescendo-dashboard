@@ -46,6 +46,14 @@ function onNetworkTablesConnection(connected) {
     }
 }
 
+$(document).on("click", "#autonomous-selector > div", function () {
+    // YOU NEED to put the value in Autonomous/selected NOT Autonomous/active or it won't stay
+    NetworkTables.putValue(
+        "/SmartDashboard/Autonomous/selected",
+        $(this).html()
+    );
+});
+
 function ntToggle(event) {
     $(event.parentElement).toggleClass("disabled");
 }
@@ -126,6 +134,19 @@ function onValueChanged(key, value, isNew) {
         $("#" + NetworkTables.keySelector(key) + " .nt-value").text(value);
     }
 
+    if (key === "/SmartDashboard/Autonomous/options") {
+        var options = NetworkTables.getValue(
+            "/SmartDashboard/Autonomous/options"
+        );
+        $("#autonomous-selector").empty();
+        options.forEach((v, i) => {
+            $("<div />")
+                .attr("id", "opt" + i)
+                .html(v)
+                .appendTo($("#autonomous-selector"));
+        });
+    }
+
     if (key.includes("/SmartDashboard/Audio")) {
         countDownAlerts(key, value);
     }
@@ -147,4 +168,17 @@ function onValueChanged(key, value, isNew) {
         $("#fieldrelative").toggleClass("active", value);
         $("#fieldrelative .indicator").text(value ? "⏽" : "⭘");
     }
+
+    $("#autonomous-selector > div").each(function () {
+        if (
+            $(this).html() ==
+            NetworkTables.getValue("/SmartDashboard/Autonomous/active")
+        ) {
+            $(this).css("background", "#802");
+
+            console.log("here");
+        } else {
+            $(this).css("background", "#3c3836");
+        }
+    });
 }
