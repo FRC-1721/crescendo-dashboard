@@ -198,6 +198,7 @@ main {
 
 #camera {
     grid-area: cam;
+    z-index: 2;
     height: 100%;
     width: 100%;
     &-error {
@@ -206,6 +207,7 @@ main {
         background-size: contain;
         height: 100%;
         width: 100%;
+        z-index: 1;
     }
 }
 
