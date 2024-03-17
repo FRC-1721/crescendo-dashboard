@@ -1,15 +1,15 @@
 # FRC 1721 Dashboard
-## Getting Started
+## Running the dashboard for the sim 
 - Make sure you have sed installed
 - Make sure Robot sim is running
-- Make sure npm is installed
+- Make sure npm and pipenv is installed
 
 Make sure you are in the dashboard/ folder.
 
 Install deps
 
 ``` sh
-npm ci
+make ready
 ```
 
 Build webpage
@@ -18,7 +18,7 @@ Build webpage
 make build
 ```
 
-(NOT REQUIRED) You can build automatically when a file changes in src/ (requires 'entr', `paru -S entr` `paman install entr`)
+(OPTIONAL) You can build automatically when a file changes in src/ (requires 'entr', `paru -S entr` `paman install entr`)
 
 ``` sh
 make dev
@@ -31,3 +31,25 @@ make run
 ```
 
 `make run` can be left running when you run `make build`, and doesn't need to be run again to update the webpage
+
+## Running on the robot
+
+Generate the execute files
+```sh
+make stage
+```
+
+Start the dashboard
+```sh
+cd dist
+chmod +x ./entrypoint.sh
+pipenv run ./entrypoint.sh
+```
+
+(OPTIONAL) You can build automatically when a file changes in src/ (requires 'entr', `paru -S entr` `paman install entr`)
+
+```sh
+make dev
+```
+
+You can leave `entrypoint.sh` running while `make dev` is running
