@@ -46,10 +46,8 @@ $(document).on("click", "#autonomous-selector > div", function () {
 });
 
 function setAutoAngle(angle) {
-  autoAngle = angle.toNumber();
-  console.log(autoAngle);
+  autoAngle = parseFloat(angle);
   NetworkTables.putValue("/SmartDashboard/Auto/Angle", autoAngle);
-  $("#autonomous-angle > input").val(autoAngle);
 }
 
 function modAutoAngle(mod) {
@@ -108,7 +106,7 @@ function putNT(key, value) {
       // item value
       $(" <div /> ", {
         class: "nt-value",
-        id: NetworkTables.keyToId(path + "/" + x),
+        id: NetworkTables.keyToId(path + "/" + x) + "--item",
         text: data,
       }).appendTo(item);
       // add item to parent folder
@@ -131,7 +129,7 @@ function onValueChanged(key, value, isNew) {
   } else {
     // similarly, use keySelector to convert the key to a valid jQuery
     // selector. This should work for class names also, not just for ids
-    $("#" + NetworkTables.keySelector(key) + " .nt-value").text(value);
+    $("#" + NetworkTables.keySelector(key) + "--item").text(value);
   }
 
   if (key === "/SmartDashboard/Auto/Mode/options") {
@@ -173,6 +171,7 @@ function onValueChanged(key, value, isNew) {
   if (key === "/SmartDashboard/Auto/Angle") {
     autoAngle = value;
     $("#autonomous-angle > input").val(autoAngle);
+    $("#angle").text(value);
   }
 
   /*if (key.includes("/SmartDashboard/Audio")) {
