@@ -14,8 +14,12 @@ body {
     width: 1366px;
 }
 
+.spacer {
+    flex: 1;
+}
+
 html {
-    transform-origin: center;
+    transform-origin: top left;
     // transform: scale(0.65) rotate(30deg);
     background-color: black;
 }
@@ -37,16 +41,19 @@ body {
 
 main {
     display: grid;
-    grid-template: 240px auto / 320px 320px 240px auto;
-    grid-template-areas:
-        "cam cam swerve ."
-        "menu menu menu menu";
+    min-height: 528px;
+    grid-template:
+        "cam thermal swerve" 240px
+        "cam thermal empty" 245px
+        "menu menu menu" 43px
+        / 647px auto 240px;
 }
 
-#buttons {
-    grid-area: 2 / 1 / 2 / 5;
+#menu {
+    grid-area: menu;
     display: flex;
     flex-direction: row;
+    background-color: #3c3836;
 }
 
 #fieldrelative {
@@ -55,9 +62,9 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 6px 3px;
-    padding: 3px 6px;
-    border-radius: 3px;
+    margin: 6px 0 6px 6px;
+    padding: 3px 0 3px 6px;
+    border-radius: 5px;
 }
 
 #fieldrelative.active {
@@ -71,7 +78,7 @@ main {
 }
 
 #fieldrelative .indicator {
-    width: 2rem;
+    width: calc(1rem + 12px);
     display: inline;
     text-align: center;
 }
@@ -83,9 +90,73 @@ main {
 
 #autonomous-selector div {
     cursor: pointer;
-    margin: 6px 3px;
+    margin: 6px 0 6px 3px;
     padding: 3px 6px;
-    border-radius: 3px;
+    background-color: #504945;
+
+    &:first-of-type {
+        border-radius: 5px 0 0 5px;
+    }
+    &:last-of-type {
+        border-radius: 0 5px 5px 0;
+    }
+    &:hover {
+        background-color: #665c54;
+    }
+}
+
+#autonomous-angle {
+    display: flex;
+    flex-direction: row;
+    margin: 6px;
+    background-color: #504945;
+    border-radius: 5px;
+
+    * {
+        margin: 0;
+        display: block;
+        border: none;
+        background: none;
+        padding: 3px;
+    }
+    input {
+        -moz-appearance: textfield;
+        width: 3rem;
+        text-align: center;
+        background: #7c6f64;
+        border-radius: 4px;
+        margin: 3px;
+    }
+    button {
+        cursor: pointer;
+        &:hover {
+            background-color: #665c54;
+        }
+    }
+    div {
+        color: #a89984;
+    }
+}
+
+#git {
+    display: flex;
+    flex-direction: row;
+    margin: 6px 3px 6px 0;
+
+    & > div {
+        display: inline-block;
+        padding: 3px 6px;
+        vertical-align: center;
+        background-color: #282828;
+        margin-right: 3px;
+
+        &:first-of-type {
+            border-radius: 5px 0 0 5px;
+        }
+        &:last-of-type {
+            border-radius: 0 5px 5px 0;
+        }
+    }
 }
 
 .swerve {
@@ -122,9 +193,39 @@ main {
 }
 
 #camera {
-    object-fit: contain;
+    background-image: url("asset/doh.png");
     grid-area: cam;
-    background-image: url("./asset/doh.png");
-    width: 100%;
     height: 100%;
+}
+
+#thermal {
+    grid-area: thermal;
+    height: 100%;
+    margin: 1rem;
+
+    &-title {
+        background-color: #3c3836;
+    }
+
+    &-content {
+        overflow-y: scroll;
+        max-height: 100%;
+        & > div {
+            border-top: 2px solid #3c3836;
+            display: flex;
+            flex-direction: row;
+            & > .thermal-name {
+                flex: 1;
+            }
+            & > .thermal-value {
+                width: 2rem;
+            }
+        }
+    }
+}
+
+#auto-mode {
+    position: fixed;
+    font-size: 10rem;
+    z-index: 100000;
 }
