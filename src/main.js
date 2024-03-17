@@ -1,5 +1,6 @@
 var temps = {};
 var autoAngle = 0;
+var hue = 0;
 
 $(function () {
   // scale to width
@@ -13,6 +14,12 @@ $(function () {
 
   // sets a function that will be called when any NetworkTables key/value changes
   NetworkTables.addGlobalListener(onValueChanged, true);
+
+  // hue cycle aaron
+  setInterval(() => {
+    hue = (hue + 15) % 720;
+    $("#camera-error").css("filter", "hue-rotate(" + hue + "deg)");
+  }, 25);
 });
 
 function onRobotConnection(connected) {
