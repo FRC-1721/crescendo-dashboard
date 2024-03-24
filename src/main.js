@@ -158,7 +158,7 @@ function onValueChanged(key, value, isNew) {
       case "SimUser":
         color = "#d3869b";
         break;
-      case "KenwoodFox":
+      case "joe":
         color = "#831598";
         break;
       case "dublu":
