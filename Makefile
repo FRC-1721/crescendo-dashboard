@@ -30,3 +30,4 @@ stage: # Prepares dist/ for deployment
 	make build
 	cp entrypoint.sh $(STAGEDIR)
 	cp run.bat $(STAGEDIR)
+	find dist/ -type f -exec sed -i 's/%baked_ver%/${shell git describe --always}/g' {} +

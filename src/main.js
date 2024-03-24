@@ -146,6 +146,11 @@ function onValueChanged(key, value, isNew) {
   if (key === "/SmartDashboard/BuildData/git-branch") {
     $("#git-branch").text(value);
   }
+
+  if (key === "/SmartDashboard/BuildData/git-desc") {
+    $("#git-hash").text(value);
+  }
+
   if (key === "/SmartDashboard/BuildData/deploy-user") {
     $("#git-user").text(value);
     var color = "";
@@ -153,7 +158,7 @@ function onValueChanged(key, value, isNew) {
       case "SimUser":
         color = "#d3869b";
         break;
-      case "joe":
+      case "KenwoodFox":
         color = "#831598";
         break;
       case "dublu":
@@ -165,7 +170,7 @@ function onValueChanged(key, value, isNew) {
       case _:
         color = "#282828";
     }
-    $("#git-user").css("border-right", "6px solid " + color);
+    $("#git-user").css("border-right", "20px solid " + color);
   }
 
   if (key === "/SmartDashboard/Auto/Angle") {
