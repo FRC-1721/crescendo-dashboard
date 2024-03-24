@@ -1,3 +1,5 @@
+[![Robot Workflow](https://github.com/FRC-1721/crescendo-dashboard/actions/workflows/dashboard-workflow.yml/badge.svg)](https://github.com/FRC-1721/crescendo-dashboard/actions/workflows/dashboard-workflow.yml)
+
 # FRC 1721 Dashboard
 ## Running the dashboard for the sim 
 - Make sure you have sed installed
