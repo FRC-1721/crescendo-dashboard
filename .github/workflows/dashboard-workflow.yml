@@ -39,3 +39,9 @@ jobs:
       - name: Stage
         run: |
           make stage
+
+      - uses: actions/upload-artifact@v4
+        name: Upload
+        with:
+          name: dashboard
+          path: dist/
