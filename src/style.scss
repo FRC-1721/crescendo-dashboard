@@ -53,6 +53,34 @@ main {
         "autonomous autonomous autonomous" 43px
         / 647px auto 240px;
 }
+body.auto {
+    main {
+        animation: marquee 4s linear infinite;
+    }
+    #auto-mode {
+        animation: marquee 1.5s linear infinite;
+    }
+    #auto-img {
+        animation: vertical 2s linear infinite;
+    }
+}
+
+@keyframes marquee {
+    0% {
+        -moz-transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-100%);
+    }
+}
+@keyframes vertical {
+    0% {
+        -moz-transform: translateY(-100%);
+    }
+    100% {
+        -moz-transform: translateY(100%);
+    }
+}
 
 #menu {
     grid-area: menu;
@@ -61,7 +89,6 @@ main {
     background-color: #3c3836;
     border-top: 1px solid #665c54;
 }
-
 #fieldrelative {
     background-color: #1d2021;
     cursor: pointer;
@@ -250,4 +277,16 @@ main {
     position: fixed;
     font-size: 10rem;
     z-index: 100000;
+    width: 100vw;
+}
+
+#auto-img {
+    position: fixed;
+    width: 100vw;
+    height: 559px;
+    left: 20vw;
+}
+
+audio {
+    display: none;
 }

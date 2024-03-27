@@ -2,6 +2,11 @@ var temps = {};
 var autoAngle = 0;
 var hue = 0;
 var ids = [];
+var isAuto = false;
+var autoSpeed = 300; // less is more
+var audioUrl = require("url:./asset/cotton.mp3");
+var audio = new Audio(audioUrl);
+audio.volume = 0.2;
 
 $(function () {
   // scale to width
@@ -21,6 +26,19 @@ $(function () {
     hue = (hue + 15) % 720;
     $("#camera-error").css("filter", "hue-rotate(" + hue + "deg)");
   }, 25);
+
+  setInterval(() => {
+    if (isAuto) {
+      $("body").css("background-color", "#00ff00");
+      // $("#auto-mode").show();
+      setTimeout(() => {
+        $("body").css("background-color", "");
+        // $("#auto-mode").hide();
+      }, autoSpeed / 2);
+      audio.playbackRate = Math.random() * 2 + 0.3;
+    }
+  }, autoSpeed);
+  audio.volume = 0.3;
 });
 
 function onRobotConnection(connected) {
@@ -241,4 +259,17 @@ function onValueChanged(key, value, isNew) {
       $(this).css("background", "");
     }
   });
+
+  if (key.includes("/SmartDashboard/Auto/IsAuto")) {
+    isAuto = value;
+    $("body").toggleClass("auto", value);
+    $("#auto-mode").toggle(value);
+    $("#auto-img").toggle(value);
+    if (value) {
+      audio.play();
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }
 }
