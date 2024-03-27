@@ -1,6 +1,7 @@
 var temps = {};
 var autoAngle = 0;
 var hue = 0;
+var ids = [];
 
 $(function () {
   // scale to width
@@ -124,12 +125,13 @@ function onValueChanged(key, value, isNew) {
   // the key names aren't always valid HTML identifiers, so we use
   // the NetworkTables.keyToId() function to convert them appropriately
 
-  if (isNew) {
+  if (ids.indexOf(key) == -1) {
     putNT(key, value);
   } else {
     // similarly, use keySelector to convert the key to a valid jQuery
     // selector. This should work for class names also, not just for ids
     $("#" + NetworkTables.keySelector(key) + "--item").text(value);
+    ids.push(key);
   }
 
   if (key === "/SmartDashboard/Auto/Mode/options") {
@@ -167,7 +169,7 @@ function onValueChanged(key, value, isNew) {
       case "kredcool":
         color = "#67ab24";
         break;
-      case _:
+      default:
         color = "#282828";
     }
     $("#git-user").css("border-right", "20px solid " + color);

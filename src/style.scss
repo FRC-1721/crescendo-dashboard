@@ -10,7 +10,6 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    height: 528px;
     width: 1366px;
 }
 
@@ -45,11 +44,13 @@ body {
 
 main {
     display: grid;
-    min-height: 528px;
+    min-height: 559px;
+    max-height: 559px;
     grid-template:
         "cam thermal swerve" 240px
-        "cam thermal empty" 245px
+        "cam thermal empty" auto
         "menu menu menu" 43px
+        "autonomous autonomous autonomous" 43px
         / 647px auto 240px;
 }
 
@@ -58,6 +59,7 @@ main {
     display: flex;
     flex-direction: row;
     background-color: #3c3836;
+    border-top: 1px solid #665c54;
 }
 
 #fieldrelative {
@@ -88,24 +90,26 @@ main {
 }
 
 #autonomous-selector {
+    grid-area: autonomous;
     display: flex;
     flex-direction: row;
-}
-
-#autonomous-selector div {
-    cursor: pointer;
-    margin: 6px 0 6px 3px;
-    padding: 3px 6px;
     background-color: #504945;
 
-    &:first-of-type {
-        border-radius: 5px 0 0 5px;
-    }
-    &:last-of-type {
-        border-radius: 0 5px 5px 0;
-    }
-    &:hover {
+    div {
+        cursor: pointer;
+        margin: 6px 0 6px 6px;
+        padding: 3px 6px;
         background-color: #665c54;
+
+        &:first-of-type {
+            border-radius: 5px 0 0 5px;
+        }
+        &:last-of-type {
+            border-radius: 0 5px 5px 0;
+        }
+        &:hover {
+            background-color: #665c54;
+        }
     }
 }
 
@@ -167,6 +171,7 @@ main {
     grid-area: swerve;
     background: #3c3836;
     position: relative;
+    border-bottom: 1px solid #665c54;
 
     &-actual,
     &-desired {
@@ -203,7 +208,6 @@ main {
     width: 100%;
     &-error {
         grid-area: cam;
-        background-image: url("asset/doh.png");
         background-size: contain;
         height: 100%;
         width: 100%;
@@ -214,24 +218,29 @@ main {
 #thermal {
     grid-area: thermal;
     height: 100%;
-    margin: 1rem;
+    background-color: #1d2021;
+    border: 1px #665c54;
+    border-style: none solid;
 
     &-title {
-        background-color: #3c3836;
+        background-color: #282828;
+        padding: 8px 12px;
     }
 
     &-content {
         overflow-y: scroll;
         max-height: 100%;
         & > div {
-            border-top: 2px solid #3c3836;
+            border-top: 1px solid #3c3836;
             display: flex;
             flex-direction: row;
+            padding: 3px 5px;
             & > .thermal-name {
                 flex: 1;
             }
             & > .thermal-value {
                 width: 2rem;
+                text-align: end;
             }
         }
     }
