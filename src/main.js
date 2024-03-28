@@ -187,6 +187,9 @@ function onValueChanged(key, value, isNew) {
       case "kredcool":
         color = "#67ab24";
         break;
+      case "magnima":
+        color = "#b8bb26";
+        break;
       default:
         color = "#282828";
     }
