@@ -205,13 +205,13 @@ function onValueChanged(key, value, isNew) {
 
   if (key.includes("/SmartDashboard/Swerve/")) {
     if (key.includes("desired")) {
-      wheel = key.split("/").at(-2);
+      let wheel = key.split("/").at(-2);
       $(".swerve-desired ." + wheel + "d").css(
         "transform",
         "rotate(" + value + "deg)",
       );
     } else {
-      wheel = key.split("/").at(-2);
+      let wheel = key.split("/").at(-2);
       $(".swerve ." + wheel).css("transform", "rotate(" + value + "deg)");
     }
   }
