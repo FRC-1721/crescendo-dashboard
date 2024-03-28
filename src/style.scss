@@ -44,8 +44,8 @@ body {
 
 main {
     display: grid;
-    min-height: 559px;
-    max-height: 559px;
+    min-height: 528px;
+    max-height: 528px;
     grid-template:
         "cam thermal swerve" 240px
         "cam thermal empty" auto
@@ -283,7 +283,7 @@ body.auto {
 #auto-img {
     position: fixed;
     width: 100vw;
-    height: 559px;
+    height: 528px;
     left: 20vw;
 }
 
