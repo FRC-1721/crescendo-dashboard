@@ -22,8 +22,8 @@ $(function () {
 
   // hue cycle aaron
   setInterval(() => {
-    hue = (hue + 15) % 720;
-    $("#camera-error").css("filter", "hue-rotate(" + hue + "deg)");
+    hue = (hue + 16) % 720;
+    $(".hue-cycle").css("filter", "hue-rotate(" + hue + "deg)");
   }, 25);
 
   setInterval(() => {
