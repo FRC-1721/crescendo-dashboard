@@ -143,7 +143,7 @@ function onValueChanged(key, value, isNew) {
   // the key names aren't always valid HTML identifiers, so we use
   // the NetworkTables.keyToId() function to convert them appropriately
 
-  if (ids.indexOf(key) == -1) {
+  if (!$("#" + NetworkTables.keySelector(key) + "--item").length) {
     putNT(key, value);
   } else {
     // similarly, use keySelector to convert the key to a valid jQuery
