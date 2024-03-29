@@ -11,7 +11,8 @@ body {
     padding: 0;
     overflow: hidden;
     width: 1366px;
-    max-height: 100vh;
+    min-height: 528px;
+    max-height: 528px;
 }
 
 .spacer {
@@ -45,14 +46,14 @@ body {
 
 main {
     display: grid;
-    min-height: 528px;
-    max-height: 528px;
     grid-template:
-        "cam thermal swerve" 240px
         "cam thermal empty" auto
+        "cam thermal swerve" 240px
         "menu menu menu" 43px
         "autonomous autonomous autonomous" 43px
         / 647px auto 240px;
+    min-height: 528px;
+    max-height: 528px;
 }
 body.auto {
     main {
@@ -199,7 +200,7 @@ body.auto {
     grid-area: swerve;
     background: #3c3836;
     position: relative;
-    border-bottom: 1px solid #665c54;
+    border-top: 1px solid #665c54;
 
     &-actual,
     &-desired {
@@ -241,6 +242,13 @@ body.auto {
         width: 100%;
         z-index: 1;
     }
+
+    &-overlay {
+        z-index: 3;
+        grid-area: cam;
+        height: 100%;
+        width: 100%;
+    }
 }
 
 #thermal {
@@ -249,6 +257,8 @@ body.auto {
     background-color: #1d2021;
     border: 1px #665c54;
     border-style: none solid;
+    overflow-y: scroll;
+    max-height: 100%;
 
     &-title {
         background-color: #282828;
@@ -256,13 +266,11 @@ body.auto {
     }
 
     &-content {
-        overflow-y: scroll;
-        max-height: 100%;
         & > div {
             border-top: 1px solid #3c3836;
             display: flex;
             flex-direction: row;
-            padding: 3px 5px;
+            padding: 2px 4px;
             & > .thermal-name {
                 flex: 1;
             }
@@ -277,7 +285,7 @@ body.auto {
 #auto-mode {
     position: fixed;
     font-size: 10rem;
-    z-index: 100000;
+    z-index: 1000;
     width: 100vw;
 }
 

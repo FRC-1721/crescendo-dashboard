@@ -35,8 +35,14 @@
         </div>
       </div>
       Dashboard version %baked_ver%
-      <img id="camera-error" src="asset/doh.png" alt=" " />
+      <!-- <img id="camera-error" class="hue-cycle" src="asset/doh.png" alt=" " /> -->
       <img id="camera" src="http://10.17.21.11:5800" alt=" " />
+      <img
+        id="camera-overlay"
+        class="hue-cycle"
+        src="asset/camera-overlay.png"
+        alt=" "
+      />
       <div id="thermal">
         <div id="thermal-title">TOP 10 THERMALS YOU *NEED* TO SEE!!</div>
         <div id="thermal-content"></div>
@@ -66,7 +72,7 @@
       </div>
       <div id="autonomous-selector"></div>
     </main>
-    <div id="nt-table">
+    <div id="nt-table" style="display: none">
       <div id="nt" class="nt-div disabled">
         <div class="nt-title" id="__title" onClick="ntToggle(this)">
           NetworkTables
@@ -74,6 +80,7 @@
         <div class="nt-div-container" id="%2F"></div>
       </div>
     </div>
+    <div id="nt-toggler" onClick='$("#nt-table").toggle()'>NT Tree</div>
     <!--
          camera
          temps
