@@ -1,7 +1,6 @@
 var temps = {};
 var autoAngle = 0;
 var hue = 0;
-var ids = [];
 var isAuto = false;
 var autoSpeed = 300; // less is more
 // var audioUrl = require("url:./asset/cotton.mp3");
@@ -149,7 +148,6 @@ function onValueChanged(key, value, isNew) {
     // similarly, use keySelector to convert the key to a valid jQuery
     // selector. This should work for class names also, not just for ids
     $("#" + NetworkTables.keySelector(key) + "--item").text(value);
-    ids.push(key);
   }
 
   if (key === "/SmartDashboard/Auto/Mode/options") {
