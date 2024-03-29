@@ -4,8 +4,8 @@ var hue = 0;
 var ids = [];
 var isAuto = false;
 var autoSpeed = 300; // less is more
-var audioUrl = require("url:./asset/cotton.mp3");
-var audio = new Audio(audioUrl);
+// var audioUrl = require("url:./asset/cotton.mp3");
+var audio = document.getElementById("joemp3");
 audio.volume = 0.2;
 
 $(function () {
